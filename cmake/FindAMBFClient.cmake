@@ -8,7 +8,7 @@ FIND_PATH (AMBF_CLIENT_INCLUDE_DIR ambf_client/ambf_client.h
 HINTS
 #/localcodebase/ambfnags92/ambf/ambf_controller/ambf_client/
 #/mnt/OneTB/localcodebase/ambf_repos/aimlab/ambf/ambf_ros_modules/ambf_client/
-$ENV{HOME}/ambf/ambf_controller/ambf_client/include
+$ENV{HOME}/ambf/ambf_ros_modules/ambf_client/include
 /usr/local/include
 /usr/include
 )

@@ -8,7 +8,7 @@ FIND_PATH (AMBF_CLIENT_INCLUDE_DIR ambf_client/ambf_client.h
 HINTS
 # /localcodebase/ambfnags92/ambf/ambf_controller/ambf_client/include
 #/mnt/OneTB/localcodebase/ambf_repos/aimlab/ambf/ambf_ros_modules/ambf_client/include
-$ENV{HOME}/ambf/ambf_controller/ambf_client/include
+$ENV{HOME}/ambf/ambf_ros_modules/ambf_client/include
 /usr/local/include
 /usr/include
 )
@@ -17,7 +17,7 @@ FIND_LIBRARY (AMBF_CLIENT_LIBRARY ambf_client
 PATHS
 #/localcodebase/ambfnags92/ambf/build/devel/lib
 #/mnt/OneTB/localcodebase/ambf_repos/aimlab/ambf/build/devel/lib
-$ENV{HOME}/ambf/ambf_controller/ambf_client/include
+$ENV{HOME}/ambf/ambf_ros_modules/ambf_client/include
 )
 
 #IF (AMBF_CLIENT_INCLUDE_DIR AND AMBF_CLIENT_LIBRARY)

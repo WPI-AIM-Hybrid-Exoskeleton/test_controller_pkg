@@ -82,7 +82,8 @@ include_directories(${AMBF_CLIENT_INCLUDE_DIR})
 MESSAGE(STATUS "Found AMBF: ${AMBF_CLIENT_INCLUDE_DIR}")
 find_package (Boost COMPONENTS program_options filesystem REQUIRED)
 
-catkin_package(INCLUDE_DIRS include
+catkin_package(INCLUDE_DIRS 
+  #include
   LIBRARIES 
   CATKIN_DEPENDS ambf_msgs
 #  DEPENDS system_lib
@@ -98,7 +99,7 @@ find_package (Boost COMPONENTS program_options filesystem REQUIRED)
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include
+  #include
   ${catkin_INCLUDE_DIRS}
 )
 
