@@ -129,6 +129,11 @@ add_dependencies (kuka_gravity ${catkin_EXPORTED_TARGETS})
 target_link_libraries (kuka_gravity ${AMBF_CLIENT_LIBRARY} ${RBDL_SERVER_LIBRARIES} ${CONTROLLER_MODULES_LIBRARIES} ${GLFW_LIBRARIES} ${RBDL_SERVER_LIBRARIES} ${Boost_LIBRARIES} ${Eigen_LIBRARIES} pthread controller_modules rbdl_server rbdl_model ${RBDL_SERVER_LIBRARIES} ${RBDL_MODEL_LIBRARIES})
 
 
+add_executable (my_robot_gravity src/my_robot_gravity.cpp)
+add_dependencies (my_robot_gravity ${catkin_EXPORTED_TARGETS})
+# target_link_libraries(kuka_control_node ${GLFW_LIBRARIES} ${catkin_LIBRARIES} ${Eigen_LIBRARIES} pthread)
+target_link_libraries (my_robot_gravity ${AMBF_CLIENT_LIBRARY} ${RBDL_SERVER_LIBRARIES} ${CONTROLLER_MODULES_LIBRARIES} ${GLFW_LIBRARIES} ${RBDL_SERVER_LIBRARIES} ${Boost_LIBRARIES} ${Eigen_LIBRARIES} pthread controller_modules rbdl_server rbdl_model ${RBDL_SERVER_LIBRARIES} ${RBDL_MODEL_LIBRARIES})
+
 
 add_executable (control_node src/control_node.cpp)
 add_dependencies (control_node ${catkin_EXPORTED_TARGETS})
