@@ -48,7 +48,7 @@ int main(int argc, char **argv)
     manager.addController("kuka_model_controller", kuka_model_controller);
 
     boost::shared_ptr<ControllerBase> kuka_grav(new GravityCompensationController("kuka",&n));
-    manager.addController("kuka_grav", kuka_grav);
+    manager.addController("kuka_gravity", kuka_grav);
 
     boost::shared_ptr<ControllerBase> my_robot_grav(new GravityCompensationController("my_robot",&n));
     manager.addController("my_robot", my_robot_grav);
