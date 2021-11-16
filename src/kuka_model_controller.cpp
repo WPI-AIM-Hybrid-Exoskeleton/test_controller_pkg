@@ -1,4 +1,6 @@
 
+
+
 #include "ros/ros.h"
 #include "controller_modules/ControllerManager.h"
 #include "controller_modules/PDController.h"
@@ -114,7 +116,7 @@ int main(int argc, char* argv[])
             
             std_msgs::Float32MultiArray desried, actual;
             controller_modules::JointControl joint_msg;
-            joint_msg.request.controller_name = "kuka_PD";
+            joint_msg.request.controller_name = "kuka_model_controller";
             std::vector<float> q = handler->get_all_joint_pos();        
             std::vector<double> q_doub(q.begin(), q.end());
             std::vector<float> qd = handler->get_all_joint_vel();        
@@ -132,27 +134,9 @@ int main(int argc, char* argv[])
             if (client_controller.call(joint_msg))
             {
                 
-                std::vector<double> effort = joint_msg.response.control_output.effort;
-                // for(int i=0; i < effort.size(); i++)
-                // { std::cout << effort.at(i) << ' ';}
-                // std::cout<<"\n";
-                rbdl_server::RBDLInverseDynamics dyn_msg;
-                dyn_msg.request.q = q_doub;
-                dyn_msg.request.qd = qd_doub;
-                dyn_msg.request.qdd = effort;
-                dyn_msg.request.model_name = model_name;
+                std::vector<float> tau(joint_msg.response.control_output.effort.begin(), joint_msg.response.control_output.effort.end());
+                handler->set_all_joint_effort(tau);
 
-                if(client_ID.call(dyn_msg))
-                {
-                    //ROS_INFO("got torque");
-                    double end =ros::Time::now().toSec();
-                    if(count < q1.size()-1)
-                    {total_time += end-start;}
-                    std::vector<float> tau(dyn_msg.response.tau.begin(), dyn_msg.response.tau.end());
-                    handler->set_all_joint_effort(tau);
-                    desired_pub.publish(desried);
-                    actual_pub.publish(actual);
-                }
 
             }
             else

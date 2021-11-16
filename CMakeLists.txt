@@ -117,6 +117,13 @@ add_dependencies (kuka_main ${catkin_EXPORTED_TARGETS})
 target_link_libraries (kuka_main ${AMBF_CLIENT_LIBRARY} ${RBDL_SERVER_LIBRARIES} ${CONTROLLER_MODULES_LIBRARIES} ${GLFW_LIBRARIES} ${RBDL_SERVER_LIBRARIES} ${Boost_LIBRARIES} ${Eigen_LIBRARIES} pthread controller_modules rbdl_server rbdl_model ${RBDL_SERVER_LIBRARIES} ${RBDL_MODEL_LIBRARIES})
 
 
+add_executable (kuka_model_controller src/kuka_model_controller.cpp)
+add_dependencies (kuka_model_controller ${catkin_EXPORTED_TARGETS})
+# target_link_libraries(kuka_control_node ${GLFW_LIBRARIES} ${catkin_LIBRARIES} ${Eigen_LIBRARIES} pthread)
+target_link_libraries (kuka_model_controller ${AMBF_CLIENT_LIBRARY} ${RBDL_SERVER_LIBRARIES} ${CONTROLLER_MODULES_LIBRARIES} ${GLFW_LIBRARIES} ${RBDL_SERVER_LIBRARIES} ${Boost_LIBRARIES} ${Eigen_LIBRARIES} pthread controller_modules rbdl_server rbdl_model ${RBDL_SERVER_LIBRARIES} ${RBDL_MODEL_LIBRARIES})
+
+
+
 add_executable (control_node src/control_node.cpp)
 add_dependencies (control_node ${catkin_EXPORTED_TARGETS})
 # target_link_libraries(kuka_control_node ${GLFW_LIBRARIES} ${catkin_LIBRARIES} ${Eigen_LIBRARIES} pthread)

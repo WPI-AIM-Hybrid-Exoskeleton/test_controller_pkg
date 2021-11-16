@@ -2,7 +2,9 @@
  #include "ros/ros.h"
 #include "controller_modules/ControllerManager.h"
 #include "controller_modules/PDController.h"
+#include "controller_modules/GravityCompensationController.h"
 #include "controller_modules/JointControl.h"
+#include "controller_modules/ModelController.h"
 
 #include "Eigen/Core"
 
@@ -39,8 +41,17 @@ int main(int argc, char **argv)
     PDController controller(Kp,Kd);
     
     ControllerManager manager(&n);
-    boost::shared_ptr<ControllerBase> my_controller(new PDController(Kp,Kd));
-    manager.addController("PD", my_controller);
+    boost::shared_ptr<ControllerBase> PD_controller(&controller);
+    manager.addController("kuka_PD", PD_controller);
+
+    boost::shared_ptr<ControllerBase> kuka_model_controller(new ModelController("kuka", &n,&controller ));
+    manager.addController("kuka_model_controller", kuka_model_controller);
+
+    boost::shared_ptr<ControllerBase> kuka_grav(new GravityCompensationController("kuka",&n));
+    manager.addController("kuka_grav", kuka_grav);
+
+    boost::shared_ptr<ControllerBase> my_robot_grav(new GravityCompensationController("my_robot",&n));
+    manager.addController("my_robot", my_robot_grav);
     
     
 
